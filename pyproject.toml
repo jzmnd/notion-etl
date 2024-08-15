@@ -1,0 +1,34 @@
+[build-system]
+requires = [
+  "setuptools>=64"
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "notion_etl"
+version = "0.1.0"
+authors = [
+  { name = "Jeremy Smith", email = "j.smith.03@cantab.net" },
+]
+license = { file = "LICENSE.md" }
+readme = "README.md"
+dependencies = [
+  "dacite>=1.0.0",
+  "python-dotenv",
+  "notion-client>=2.0.0",
+  "pandas",
+  "SQLAlchemy<2.0",
+  "psycopg2",
+  "python-dateutil>=2.7.0",
+  "PyYAML>=5.4.1",
+]
+requires-python = ">= 3.9"
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+]
+
+[project.optional-dependencies]
+airflow = [
+  "apache-airflow"
+]

@@ -1,0 +1,15 @@
+name: example1
+source:
+  notion_database_id: 00000000-0000-0000-0000-000000000000
+  notion_token_env: NOTION_API_KEY
+transformer:
+  class_path: example1.Example1Transformer
+destination:
+  table_name: example1table
+  driver_name: postgresql+psycopg2
+  database: postgres
+  host: 10.0.0.1
+  port: 5432
+  username: postgres
+  password_env: PG_DB_PASSWORD
+  if_exists: replace
