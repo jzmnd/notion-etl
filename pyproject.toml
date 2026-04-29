@@ -10,7 +10,7 @@ version = "0.1.0"
 authors = [
   { name = "Jeremy Smith", email = "j.smith.03@cantab.net" },
 ]
-license = { file = "LICENSE.md" }
+license = "MIT"
 readme = "README.md"
 dependencies = [
   "dacite>=1.0.0",
@@ -25,10 +25,14 @@ dependencies = [
 requires-python = ">= 3.9"
 classifiers = [
   "Programming Language :: Python :: 3",
-  "License :: OSI Approved :: MIT License",
 ]
 
 [project.optional-dependencies]
 airflow = [
   "apache-airflow"
+]
+
+[tool.setuptools]
+packages = [
+  "notion_etl"
 ]
