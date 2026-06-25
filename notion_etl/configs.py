@@ -31,20 +31,17 @@ def get_transformer_class(class_path: str) -> Type[BaseTransformer]:
 
 @dataclass
 class SourceConfig:
-
     notion_database_id: str
     notion_token_env: str
 
 
 @dataclass
 class TransformerConfig:
-
     class_path: str
 
 
 @dataclass
 class DestinationConfig:
-
     table_name: str
     driver_name: str
     database: str

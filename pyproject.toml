@@ -36,3 +36,8 @@ airflow = [
 packages = [
   "notion_etl"
 ]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.15.20",
+]

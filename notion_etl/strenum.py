@@ -6,7 +6,9 @@ class StrEnum(str, Enum):
 
     def __new__(cls, value, *args, **kwargs):
         if not isinstance(value, (str, auto)):
-            raise TypeError(f"Values of StrEnums must be strings: {value!r} is a {type(value)}")
+            raise TypeError(
+                f"Values of StrEnums must be strings: {value!r} is a {type(value)}"
+            )
         return str.__new__(cls, value)
 
     def __str__(self):

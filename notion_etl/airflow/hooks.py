@@ -18,7 +18,9 @@ Json = Union[Dict[str, Any], List[Any], str]
 class NotionDbHook(BaseHook):
     """Airflow hook to make connections to a Notion database using the `notion_client` library."""
 
-    def __init__(self, token: Optional[str] = None, conn_id: Optional[str] = None) -> None:
+    def __init__(
+        self, token: Optional[str] = None, conn_id: Optional[str] = None
+    ) -> None:
         self.token = self._get_token(token, conn_id)
         self.conn = None
 
@@ -31,7 +33,9 @@ class NotionDbHook(BaseHook):
             try:
                 return conn.password
             except AttributeError as err:
-                raise AirflowException("Missing token (password) in Notion Connection") from err
+                raise AirflowException(
+                    "Missing token (password) in Notion Connection"
+                ) from err
         raise AirflowException("No valid Notion API token or Connection ID")
 
     def get_conn(self) -> Client:
@@ -67,7 +71,9 @@ class NotionDbHook(BaseHook):
                     conn.databases.query, database_id=database_id, filter=filter
                 )
             else:
-                result = collect_paginated_api(conn.databases.query, database_id=database_id)
+                result = collect_paginated_api(
+                    conn.databases.query, database_id=database_id
+                )
             return result
         except (APIResponseError, HTTPResponseError, RequestTimeoutError) as err:
             raise AirflowException("Notion query database failed") from err

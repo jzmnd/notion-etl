@@ -33,8 +33,12 @@ class NotionEtl:
 
     def extract(self) -> pd.DataFrame:
         """Extract all data from the Notion database using the `notion_client` library."""
-        self.logger.info("Reading Notion database: %s", self.conf.source.notion_database_id)
-        client = Client(auth=os.environ[self.conf.source.notion_token_env], log_level=logging.INFO)
+        self.logger.info(
+            "Reading Notion database: %s", self.conf.source.notion_database_id
+        )
+        client = Client(
+            auth=os.environ[self.conf.source.notion_token_env], log_level=logging.INFO
+        )
         database_query = collect_paginated_api(
             client.databases.query, database_id=self.conf.source.notion_database_id
         )
@@ -54,7 +58,9 @@ class NotionEtl:
                 database=self.conf.destination.database,
             )
         )
-        self.logger.info("Inserting rows into table: %s", self.conf.destination.table_name)
+        self.logger.info(
+            "Inserting rows into table: %s", self.conf.destination.table_name
+        )
         data.to_sql(
             self.conf.destination.table_name,
             engine,
@@ -74,7 +80,9 @@ class NotionEtl:
 def setup_logger() -> None:
     """Setup custom logger for the job."""
     handler = logging.StreamHandler()
-    formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+    formatter = logging.Formatter(
+        "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+    )
     handler.setFormatter(formatter)
     LOGGER.addHandler(handler)
     LOGGER.setLevel(logging.INFO)

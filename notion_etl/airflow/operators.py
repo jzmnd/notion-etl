@@ -41,7 +41,9 @@ class NotionDbToPostgresOperator(BaseOperator):
         self.if_exists = if_exists
 
     def execute(self, context: Dict) -> None:
-        notion_hook = NotionDbHook(token=self.notion_api_token, conn_id=self.notion_api_conn_id)
+        notion_hook = NotionDbHook(
+            token=self.notion_api_token, conn_id=self.notion_api_conn_id
+        )
         postgres_hook = PostgresHook(
             postgres_conn_id=self.postgres_conn_id, schema=self.postgres_database
         )
